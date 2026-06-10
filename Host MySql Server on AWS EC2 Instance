@@ -1,0 +1,21 @@
+Step 1: Update the system
+sudo apt update -y
+Step 2: Install MySQL
+sudo apt install mysql-server
+Step 3: Check the Status of MySQL (Active or Inactive)
+sudo systemctl status mysql
+Step 4: Log in to MySQL as root
+sudo mysql
+Step 5: Update the password for the MySQL Server
+mysql -u root -p
+FLUSH PRIVILEGES;
+Step 6: Test the MySQL server
+CREATE DATABASE test;
+
+USE test;
+
+CREATE TABLE STV (id INT, name VARCHAR(45));
+
+INSERT INTO STV VALUES(1, 'Noor'), (2, 'Rakib'), (3, 'Rafi'), (4, 'Susmoy');
+
+SELECT * FROM STV;
