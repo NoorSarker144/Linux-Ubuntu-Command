@@ -1,0 +1,9 @@
+ecs-sap-prd   (/hana/data) - file system increased
+
+1. ecs‑sap‑prd‑volume‑0002 (897GB)  (/hana/data)
+2. lsblk
+3. vgs
+4. pvresize /dev/mapper/datavg-datalv02
+5. lvextend -L +20G /dev/mapper/datavg-datalv02   (+20G depend on size)
+6. df -Th  (for verify xfs or ext4)
+6. xfs_growfs /hana/data
