@@ -1,0 +1,32 @@
+Open vpn server
+
+Key: openvpn-key
+
+subnet: test-public-subnet-2b
+
+First, get the script and make it executable:
+
+curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
+chmod +x openvpn-install.sh
+
+Then run it:
+./openvpn-install.sh
+
+Clint name: gal_openvpn
+Password: Gal@0penvpn
+
+cat /home/ubuntu/gal_openvpn.ovpn
+
+Commands :-
+sudo apt update && sudo apt upgrade -y     # Update and upgrade system
+curl ifconfig.me                           # Show public IP
+curl -O https://raw.githubusercontent.com/angrista...   # Download OpenVPN script
+sudo bash openvpn-install.sh               # Run the installer
+
+Accessingh VPN via Windows machine
+Download Openvpn client from https://openvpn.net/client/
+
+Accessing VPN via linux machine
+move or create the contents of ovpn file into linux environment
+sudo apt install openvpn
+sudo openvpn --config gal_openvpn.ovpn

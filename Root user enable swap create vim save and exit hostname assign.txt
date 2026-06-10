@@ -1,0 +1,102 @@
+Requirements:
+1. Instance Name
+2. Instance OS Type
+3. Region
+4. Instance Family Type
+5. vCPU
+6. Memory(GiB)
+7. Network performance(GiB)
+8. Billing Option
+9. EBS Storage Type
+10. IoPS/Throughput
+11. Storage Size
+12. Snapshot (if needed)
+13. Monitoring tolls (if needed)
+14. Outbound data Transfer (GB)
+15. Security Group (Port)
+
+Create VPC
+Subnet(Public & Private)
+Internet Gateway (Public access)
+Route Table
+----------------------------------------------
+Agile-Stating-server
+user: root
+pass: Ag1le@m1nd
+
+Agile-Production-server
+User: root
+passwd: ag!le@m!ndpr@
+
+
+prohibit-password
+
+
+
+Root User Enable Process:
+
+Edit SSH config: sudo nano /etc/ssh/sshd_config
+
+Make sure these lines exist and are NOT commented:
+PermitRootLogin yes
+PasswordAuthentication yes
+KbdInteractiveAuthentication yes
+UsePAM yes
+
+#PasswordAuthentication yes
+PasswordAuthentication no
+
+Open any .conf file found there: sudo nano /etc/ssh/sshd_config.d/*.conf
+
+Look for: PasswordAuthentication no
+Change it to: PasswordAuthentication yes
+
+
+
+
+Hostname:
+Check the current hostname: hostnamectl or hostname
+Change the static hostname: sudo hostnamectl set-hostname your-new-hostname
+sudo hostnamectl set-hostname "Your Production Server" --pretty (spaces)
+
+
+Swap Configuration: (Swap=32 GB)
+sudo dd if=/dev/zero of=/swapfile bs=1G count=32
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+sudo swapon -s
+sudo vi /etc/fstab
+sudo /swapfile swap swap defaults 0 0
+
+
+
+-----------------------------------------
+
+Open file with VI
+vi /etc/fstab
+
+INSERT (to start typing)
+
+| Key | What it does                        |
+| --- | ----------------------------------- |
+| `i` | Insert **before** cursor            |
+| `a` | Insert **after** cursor             |
+| `o` | Open **new line below** (MOST USED) |
+| `O` | Open **new line above**             |
+
+
+Save and exit
+Press Esc (exit insert mode)
+type: :wq
+Press Enter
+
+If you want to exit without saving: :q!
+
+| Action            | Command       |
+| ----------------- | ------------- |
+| Insert mode       | `i`, `a`, `o` |
+| Exit insert mode  | `Esc`         |
+| Save              | `:w`          |
+| Save & exit       | `:wq`         |
+| Quit without save | `:q!`         |
