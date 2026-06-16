@@ -1,0 +1,54 @@
+
+
+Renew SSL Certificate New Zealand Dairy (mis.nzdbd.com)
+
+1. Create New Folder
+sudo mkdir -p /var/www/vhosts/ssl-certs/ssl_2026-june
+
+2. Upload New SSL Files
+mis_nzdbd_com.crt
+PrivateKey.key
+(Use WinSCP / SCP)
+
+3. Set Correct Permissions
+cd /var/www/vhosts/ssl-certs/ssl_2026-june
+sudo chmod 600 PrivateKey.key
+sudo chmod 644 *.crt
+
+4. Edit Apache SSL Config
+sudo vim /etc/httpd/conf.d/ssl.conf
+
+Replace ONLY These Lines
+
+SSLCertificateFile /var/www/vhosts/ssl-certs/ssl_2026-june/mis_nzdbd_com.crt
+SSLCertificateKeyFile /var/www/vhosts/ssl-certs/ssl_2026-june/PrivateKey.key
+
+5. Test Configuration (Must Do)
+sudo apachectl configtest
+
+6. Restart Apache
+sudo systemctl restart httpd
+
+7. Verify SSL
+openssl x509 -in /var/www/vhosts/ssl-certs/ssl_2026-june/mis_nzdbd_com.crt -noout -dates
+
+Check from browser:
+https://mis.nzdbd.com
+
+
+
+--------------------------------------------------------------------------------------
+
+Step 10: (Optional Pro Setup – Future Easy Renewal)
+
+Create symlink:
+
+cd /var/www/vhosts/ssl-certs/
+sudo ln -sfn ssl_2026-27 ssl_current
+
+Then use in config:
+
+SSLCertificateFile /var/www/vhosts/ssl-certs/ssl_current/fullchain.crt
+SSLCertificateKeyFile /var/www/vhosts/ssl-certs/ssl_current/PrivateKey.key
+
+👉 Next year → just update symlink (no config edit needed 🔥)
